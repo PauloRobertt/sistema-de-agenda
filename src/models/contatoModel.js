@@ -22,6 +22,4 @@ const contatoSchema = mongoose.Schema({
     }
 })
 
-const ContatoModel = mongoose.model('Contato', contatoSchema);
-
-module.exports = ContatoModel;
+module.exports = contatoSchema;
