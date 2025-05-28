@@ -20,13 +20,12 @@ module.exports = {
             const { nome, sobrenome, email, telefone } = data;
 
             if (!nome || !sobrenome || !email || !telefone) throw new Error('Todos os campos são obrigatorios!');
-            
-            if(telefone.length < 11) throw new Error('Campo telefone precisa ter no minimo 11 caracteres');
+
+            if (telefone.length < 11) throw new Error('Campo telefone precisa ter no minimo 11 caracteres');
 
             const emailExistente = await contatoModel.find({ email: email }).exec();
 
-            if (emailExistente) throw new Error('Email já em uso!');
-
+            if(emailExistente.length != 0) throw new Error('Email já em uso!');
 
             const newContato = new contatoModel({
                 nome,
@@ -36,6 +35,15 @@ module.exports = {
             })
 
             return await newContato.save();
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    async findByIdAndDelete(id) {
+        try {
+            if (!id) throw new Error('ID é obrigatorio!');
+            return await contatoModel.findByIdAndDelete(id);
         } catch (error) {
             console.log(error);
         }

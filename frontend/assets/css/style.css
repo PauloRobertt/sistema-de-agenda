@@ -64,8 +64,10 @@ footer {
 }
 
 .container table tr {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 1em;
     padding: .5em 0;
     border-top: 1px solid var(--primaryColor);
@@ -76,8 +78,8 @@ footer {
     min-width: 20%;
 }
 
-.container table td:nth-child(5), .container table td:nth-child(6)  {
-    min-width: 45px;
+.container table td:nth-child(4), .container table td:nth-child(5), .container table td:nth-child(6)  {
+    min-width: auto;
 }
 
 .button-editar,
