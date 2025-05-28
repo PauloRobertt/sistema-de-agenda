@@ -13,7 +13,7 @@
                     <td><%=contato.sobrenome%></td>
                     <td><%=contato.email%></td>
                     <td><%=contato.telefone%></td>
-                    <td><button class="button-editar">Editar</button></td>
+                    <td><button class="button-editar" onclick="editIndexContato('<%= contato.id %>')">Editar</button></td>
                     <td><button class="button-excluir" onclick="deleteContato('<%= contato.id %>')">Excluir</button></td>
                 </tr>
             <% }) %>
@@ -38,6 +38,23 @@
                     console.log(err)
                 })
             location.reload();
+        }
+
+        const editIndexContato = (id) => {
+            fetch(`http://localhost:3000/contato/edit/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+            })
+                .then((res)=>{
+                    console.log(res);
+                })
+                .catch((err)=>{
+                    console.log(err);
+                })
+                window.location.replace(`http://localhost:3000/contato/edit/${id}`);
         }
     </script>
     <%-include('includes/footer.ejs')%>
