@@ -1,0 +1,78 @@
+    <%-include('includes/header.ejs')%>
+    <div class="container">
+        <h1>Criar Conta / Entrar</h1>
+        <p>Abaixo você pode criar sua conta ou entrar.</p>
+        <div class="auth-container">
+            <section class="section-register">
+                <h2>Criar conta</h2>
+                <p>Se ainda não tem conta, use o formulário abaixo para criar</p>
+                <form class="form-register">
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>" >
+                    <div class="container-input">
+                        <label>E-mail</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div class="container-input">
+                        <label>Senha</label>
+                        <input type="password" name="senha">
+                    </div>
+                    <button class="button-submit button-register">Criar minha conta</button>
+                </form>
+            </section>
+
+            <section class="section-login">
+                <h2>Login</h2>
+                <p>Se já possui uma conta, faça login abaixo.</p>
+                <form class="form-login">
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>" >
+                    <div class="container-input">
+                        <label>E-mail</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div class="container-input">
+                        <label>Senha</label>
+                        <input type="password" name="senha">
+                    </div>
+                    <button class="button-submit button-login">Entrar</button>
+                </form>
+            </section>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.button-register').addEventListener('click', function (event) {
+            handleSubmitRegister(event);
+        })
+        
+        const handleSubmitRegister = (e) => {
+            e.preventDefault();
+            const form = document.querySelector('.form-register');
+            const formData = new FormData(form);
+            
+            const dataSave = {
+                email: formData.get('email'),
+                senha: formData.get('senha')
+            }
+
+            register(dataSave);
+        }
+
+        const register = (usuario) => {
+            fetch('http://localhost:3000/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(usuario)
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+            window.location.reload();
+        }
+    </script>
+    <%-include('includes/footer.ejs')%>
