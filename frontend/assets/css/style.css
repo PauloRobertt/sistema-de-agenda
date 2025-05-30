@@ -55,7 +55,7 @@ footer {
     gap: 1em;
 }
 
-.container h1{
+.container h1 {
     font-size: var(--sizeTittle);
 }
 
@@ -78,7 +78,9 @@ footer {
     min-width: 20%;
 }
 
-.container table td:nth-child(4), .container table td:nth-child(5), .container table td:nth-child(6)  {
+.container table td:nth-child(4),
+.container table td:nth-child(5),
+.container table td:nth-child(6) {
     min-width: auto;
 }
 
@@ -125,4 +127,29 @@ footer {
     border: none;
     padding: .5em;
     cursor: pointer;
+}
+
+.auth-container {
+    display: flex;
+    gap: 2em;
+}
+
+.section-register,
+.section-login,
+.form-register,
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.section-register,
+.section-login {
+    width: 50%;
+    justify-content: space-between;
+}
+
+.section-register .button-submit,
+.section-login .button-submit {
+    width: fit-content;
 }
