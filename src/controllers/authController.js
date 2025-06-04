@@ -1,6 +1,6 @@
 const authService = require("../services/authService");
 
-exports.index = (req, res) =>{
+exports.index = (req, res) => {
     res.render('authView');
     return;
 }
@@ -10,6 +10,12 @@ exports.login = (req, res) => {
 }
 
 exports.register = async (req, res) => {
-    const result = await authService.register(req.body);
-    res.send(result);
+    try {
+        const result = await authService.register(req.body);
+        req.flash('sucesso', 'Usuario registrado com sucesso!');
+        res.redirect('/auth/index');
+    } catch (error) {
+        req.flash('error', error.message);
+        res.redirect('/auth/index');
+    }
 }
