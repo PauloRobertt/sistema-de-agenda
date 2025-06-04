@@ -129,7 +129,7 @@ footer {
     cursor: pointer;
 }
 
-.auth-container {
+.container-conteudo {
     display: flex;
     gap: 2em;
 }
@@ -152,4 +152,26 @@ footer {
 .section-register .button-submit,
 .section-login .button-submit {
     width: fit-content;
+}
+
+.container-auth{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.container-message{
+    width: 100%;
+    height: auto;
+    padding: .5em;
+    border-radius: .5em;
+}
+
+.message-error{
+    background-color: rgb(255, 29, 29);
+    color: white;
+}
+.message-sucess{
+    background-color: rgb(44, 170, 65);
+    color: #ffff
 }
