@@ -1,4 +1,4 @@
-const authService = require("../services/authService");
+const Authentication = require('../services/authService.js');
 
 exports.index = (req, res) => {
     if (req.session.user) return res.render('authViewLogado');
@@ -14,12 +14,20 @@ exports.logout = (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        const result = await authService.login(req.body);
-        req.session.user = result;
+        const auth = new Authentication(req.body);
+
+        const result = await auth.login();
+
+        req.session.user = {
+            id: result._id,
+            email: result.email
+        };
+
         req.session.save(() => {
             req.flash('sucesso', 'Usuario logado com sucesso!');
             res.redirect('/auth/index');
         })
+
     } catch (error) {
         req.flash('error', error.message);
         res.redirect('/auth/index');
@@ -28,7 +36,9 @@ exports.login = async (req, res) => {
 
 exports.register = async (req, res) => {
     try {
-        const result = await authService.register(req.body);
+        const auth = new Authentication(req.body);
+        await auth.register();
+
         req.flash('sucesso', 'Usuario registrado com sucesso!');
         res.redirect('/auth/index');
     } catch (error) {
