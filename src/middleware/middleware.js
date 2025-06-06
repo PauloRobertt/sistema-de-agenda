@@ -14,5 +14,6 @@ exports.csrfMiddlware = (req, res, next) => {
 exports.middlewareMessage = (req, res, next) => {
     res.locals.error = req.flash('error');
     res.locals.sucesso = req.flash('sucesso');
+    res.locals.user = req.session.user;
     next();
 }
