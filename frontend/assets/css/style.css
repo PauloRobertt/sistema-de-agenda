@@ -1,5 +1,6 @@
 :root {
     --primaryColor: #343c3c;
+    --buttonHeader: #656d70;
     --sizeTittle: 36px;
 }
 
@@ -23,21 +24,35 @@ header,
 footer {
     width: 100%;
     background-color: var(--primaryColor);
-    color: #ffff;
     padding: 1em;
+    color: #ffff;
 }
 
-header {
+header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: left;
 }
 
+header a{
+    text-decoration: none;
+}
+
+.titulo-header a{
+    color: #ffff;
+}
+
 .button-header {
-    color: #656d70;
+    color: var(--buttonHeader);
     cursor: pointer;
     border: none;
+}
+
+.nav-header{
+    display: flex;
+    gap: 1em;
+    list-style: none;
 }
 
 footer {
@@ -55,7 +70,7 @@ footer {
     gap: 1em;
 }
 
-.container h1{
+.container h1 {
     font-size: var(--sizeTittle);
 }
 
@@ -78,7 +93,9 @@ footer {
     min-width: 20%;
 }
 
-.container table td:nth-child(4), .container table td:nth-child(5), .container table td:nth-child(6)  {
+.container table td:nth-child(4),
+.container table td:nth-child(5),
+.container table td:nth-child(6) {
     min-width: auto;
 }
 
@@ -125,4 +142,52 @@ footer {
     border: none;
     padding: .5em;
     cursor: pointer;
+}
+
+.container-conteudo {
+    display: flex;
+    gap: 2em;
+}
+
+.section-register,
+.section-login,
+.form-register,
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.section-register,
+.section-login {
+    width: 50%;
+    justify-content: space-between;
+}
+
+.section-register .button-submit,
+.section-login .button-submit {
+    width: fit-content;
+}
+
+.container-auth {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.container-message {
+    width: 100%;
+    height: auto;
+    padding: .5em;
+    border-radius: .5em;
+}
+
+.message-error {
+    background-color: rgb(255, 29, 29);
+    color: white;
+}
+
+.message-sucess {
+    background-color: rgb(44, 170, 65);
+    color: #ffff
 }
