@@ -17,3 +17,12 @@ exports.middlewareMessage = (req, res, next) => {
     res.locals.user = req.session.user;
     next();
 }
+
+exports.loginRequired = (req, res, next) =>{
+    if (!req.session.user){
+        req.flash('error', 'Você precisa estar logado no sistema para ter acesso!');
+        res.redirect('/');
+    };
+
+    next();
+}
