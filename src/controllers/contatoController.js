@@ -1,13 +1,11 @@
 const contatoService = require('../services/contatoService.js');
 
 exports.index = (req, res) => {
-    if (!req.session.user) return res.render('authView');
     res.render('contatoView');
     return;
 }
 
 exports.indexEditarContato = async (req, res) => {
-    if (!req.session.user) return res.render('authView');
     const contato = await contatoService.findById(req.params.id);
     res.render('editarContatoView.ejs', {
         editContato: contato

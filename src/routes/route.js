@@ -5,10 +5,12 @@ const homeController = require('../controllers/homeController.js');
 const contatoController = require('../controllers/contatoController.js');
 const authController = require('../controllers/authController.js');
 
+const { loginRequired } = require('../middleware/middleware.js');
+
 // Rotas de renderização
 router.get('/', homeController.telaPrincipal);
-router.get('/contato/index', contatoController.index);
-router.get('/contato/edit/:id', contatoController.indexEditarContato);
+router.get('/contato/index', loginRequired, contatoController.index);
+router.get('/contato/edit/:id', loginRequired, contatoController.indexEditarContato);
 router.get('/auth/index', authController.index);
 
 // Rotas de contato

@@ -3,7 +3,7 @@
         <h1>Agenda</h1>
         <h3>Abaixo estão todos os seus contatos.</h3>
         <table>
-
+            <%-include('includes/messages.ejs')%>
             <% if(contatos.length === 0) { %>
                 <h3>Nenhum contato encontrado!</h3>
             <% } else { %>
