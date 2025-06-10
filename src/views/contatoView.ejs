@@ -1,7 +1,9 @@
     <%-include('includes/header.ejs')%>
     <section class="container">
         <h1>Cadastrar contato</h1>
-        <form class="form-contato">
+        <form action="/contato" method="post" class="form-contato">
+            <%-include('includes/messages.ejs')%>
+            <input type="hidden" name="_csrf" value=<%=csrfToken %>>
             <div class="container-input">
                 <label>Nome</label>
                 <input class='input' type="text" name="nome" placeholder="Digite seu nome" >
@@ -12,53 +14,13 @@
             </div>
             <div class="container-input">
                 <label>E-mail</label>
-                <input class='input' type="email" name="e-mail" placeholder="Digite seu e-mail">
+                <input class='input' type="email" name="email" placeholder="Digite seu e-mail">
             </div>
             <div class="container-input">
                 <label>Telefone</label>
                 <input class='input' type="tel" name="telefone" placeholder="Digite seu telefone">
             </div>
-            <button class="button-submit" type="submit">Criar Contato</button>
+            <button class="button-submit">Criar Contato</button>
         </form>
     </section>
-
-    <script>
-        document.querySelector('.button-submit').addEventListener('click', function (event) {
-            handleSubmit(event);
-        })
-        
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            const form = document.querySelector('.form-contato');
-            const formData = new FormData(form);
-            
-            const dataSave = {
-                nome: formData.get('nome'),
-                sobrenome: formData.get('sobrenome'),
-                email: formData.get('e-mail'),
-                telefone: formData.get('telefone')
-            }
-
-            criarContato(dataSave);
-        }
-
-        const criarContato = (contato) => {
-            fetch('http://localhost:3000/contato', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(contato)
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-            window.location.replace(`http://localhost:3000`);
-        }
-    </script>
     <%-include('includes/footer.ejs')%>
