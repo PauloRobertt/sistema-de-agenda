@@ -28,18 +28,18 @@ footer {
     color: #ffff;
 }
 
-header{
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: left;
 }
 
-header a{
+header a {
     text-decoration: none;
 }
 
-.titulo-header a{
+.titulo-header a {
     color: #ffff;
 }
 
@@ -49,7 +49,7 @@ header a{
     border: none;
 }
 
-.nav-header{
+.nav-header {
     display: flex;
     gap: 1em;
     list-style: none;
@@ -104,6 +104,13 @@ footer {
     border: none;
     cursor: pointer;
     background-color: white;
+    text-decoration: none;
+}
+
+.button-editar:hover,
+.button-excluir:hover,
+.button-header:hover {
+    text-decoration: underline;
 }
 
 .button-editar {
@@ -112,6 +119,11 @@ footer {
 
 .button-excluir {
     color: #d63d7b;
+}
+
+.container table,
+.button-excluir {
+    font-size: 20px;
 }
 
 .form-contato {
@@ -176,7 +188,6 @@ footer {
 }
 
 .container-message {
-    width: 100%;
     height: auto;
     padding: .5em;
     border-radius: .5em;
