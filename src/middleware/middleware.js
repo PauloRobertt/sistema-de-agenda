@@ -22,7 +22,7 @@ exports.loginRequired = (req, res, next) =>{
     if (!req.session.user){
         req.flash('error', 'Você precisa estar logado no sistema para ter acesso!');
         res.redirect('/');
+        return;
     };
-
     next();
 }
