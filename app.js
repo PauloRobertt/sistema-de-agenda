@@ -39,6 +39,9 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 const router = require('./src/routes/route.js');
 app.use(router);
 

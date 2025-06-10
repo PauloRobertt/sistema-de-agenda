@@ -2,59 +2,31 @@
     <section class="container">
         <h1>Agenda</h1>
         <h3>Abaixo estão todos os seus contatos.</h3>
-        <table>
-            <%-include('includes/messages.ejs')%>
-            <% if(contatos.length === 0) { %>
-                <h3>Nenhum contato encontrado!</h3>
-            <% } else { %>
-                <%contatos.forEach((contato)=>{%>
-                <tr>
-                    <td><%=contato.nome%></td>
-                    <td><%=contato.sobrenome%></td>
-                    <td><%=contato.email%></td>
-                    <td><%=contato.telefone%></td>
-                    <td><button class="button-editar" onclick="editIndexContato('<%= contato.id %>')">Editar</button></td>
-                    <td><button class="button-excluir" onclick="deleteContato('<%= contato.id %>')">Excluir</button></td>
-                </tr>
-            <% }) %>
-            <% } %>
-
-        </table>
+        <% if(!user){ %>
+            <p>Você precisa estar logado ou criar um registro para ver seus contatos.</p>
+        <% } else { %>
+            <table>
+                <%-include('includes/messages.ejs')%>
+                <% if(contatos.length === 0) { %>
+                    <h3>Nenhum contato encontrado!</h3>
+                <% } else { %>
+                    <%contatos.forEach((contato)=>{%>
+                    <tr>
+                        <td><%=contato.nome%></td>
+                        <td><%=contato.sobrenome%></td>
+                        <td><%=contato.email%></td>
+                        <td><%=contato.telefone%></td>
+                        <td><a href="/contato/edit/<%= contato._id %>" class="button-editar" >Editar</a></td>
+                        <td>
+                            <form action="/contato/<%= contato._id %>?_method=DELETE" method="POST">
+                                <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+                                <button class="button-excluir"><a>Excluir</a></button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+                <% } %>
+            </table>
+        <% } %>
     </section>
-    <script>
-        const deleteContato = (id) => {
-            fetch(`http://localhost:3000/contato/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                },
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data);
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-            location.reload();
-        }
-
-        const editIndexContato = (id) => {
-            fetch(`http://localhost:3000/contato/edit/${id}`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                },
-            })
-                .then((res)=>{
-                    console.log(res);
-                })
-                .catch((err)=>{
-                    console.log(err);
-                })
-                window.location.replace(`http://localhost:3000/contato/edit/${id}`);
-        }
-    </script>
     <%-include('includes/footer.ejs')%>

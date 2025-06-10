@@ -1,4 +1,4 @@
-const contatoService = require('../services/contatoService.js');
+const Contato = require('../services/contatoService.js');
 
 exports.index = (req, res) => {
     res.render('contatoView');
@@ -6,34 +6,69 @@ exports.index = (req, res) => {
 }
 
 exports.indexEditarContato = async (req, res) => {
-    const contato = await contatoService.findById(req.params.id);
-    res.render('editarContatoView.ejs', {
-        editContato: contato
-    });
-    return;
+    try {
+        const contato = new Contato(req.params.id, undefined, req.session.user);
+        const contatoID = await contato.findById()
+
+        res.render('editarContatoView.ejs', {
+            editContato: contatoID
+        });
+        return;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 exports.retornarContatos = async (req, res) => {
-    const contatos = await contatoService.findAll()
-    res.send(contatos);
+    try {
+        const contato = new Contato(undefined, undefined, req.session.user);
+        const contatos = await contato.findAll()
+        return contatos;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 exports.retornarContato = async (req, res) => {
-    const contato = await contatoService.findById(req.params.id)
-    res.send(contato);
+    const contato = new Contato(req.params);
+    await contato.findById();
 }
 
-exports.criarContato = async (req, res) => {
-    const result = await contatoService.createContato(req.body);
-    res.send(result);
+exports.createContato = async (req, res) => {
+    try {
+        const contato = new Contato(req.params.id, req.body, req.session.user);
+        await contato.createContato();
+
+        req.flash('sucesso', 'Contato adicionado com sucesso!');
+        res.redirect('/');
+    } catch (error) {
+        req.flash('error', error.message);
+        res.redirect('/contato/index');
+    }
 }
 
-exports.editContato = async (req, res) => {
-    const result = await contatoService.findByIdAndUpdate(req.body, req.params.id);
-    res.send(result);
+exports.findByIdAndUpdate = async (req, res) => {
+    try {
+        const contato = new Contato(req.params.id, req.body, req.session.user);
+        await contato.findByIdAndUpdate();
+
+        req.flash('sucesso', 'Contato editado com sucesso!');
+        res.redirect('/');
+    } catch (error) {
+        req.flash('error', error.message);
+        res.redirect(`/contato/edit/${req.params.id}`);
+    }
 }
 
-exports.deletarContato = async (req, res) => {
-    const result = await contatoService.findByIdAndDelete(req.params.id);
-    res.send(result);
+exports.findByIdAndDelete = async (req, res) => {
+    try {
+        const contato = new Contato(req.params.id, undefined, undefined);
+        await contato.findByIdAndDelete();
+
+        req.flash('sucesso', 'Contato deletado com sucesso!');
+        res.redirect('/');
+    } catch (error) {
+        req.flash('error', error.message);
+        res.redirect('/');
+    }
 }

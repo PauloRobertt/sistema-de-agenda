@@ -3,7 +3,9 @@ const { default: mongoose } = require("mongoose")
 const usuarioSchema = mongoose.Schema({
     email: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true,
+        unique: true
     },
     
     senha: {
