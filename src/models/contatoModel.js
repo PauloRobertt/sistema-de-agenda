@@ -13,13 +13,19 @@ const contatoSchema = mongoose.Schema({
         type: String,
         required: true,
         lowercase: true,
-        unique: true,
     },
     telefone: {
         type: String,
         required: true,
         minlength: 11
+    },
+    id_usuario: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'usuario'
     }
 })
 
-module.exports = contatoSchema;
+const contatoModel = mongoose.model('contatos', contatoSchema);
+
+module.exports = contatoModel;
