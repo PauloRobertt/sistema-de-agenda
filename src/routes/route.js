@@ -16,9 +16,9 @@ router.get('/auth/index', authController.index);
 // Rotas de contato
 router.get('/contato', contatoController.retornarContatos);
 router.get('/contato/:id', contatoController.retornarContato);
-router.post('/contato', contatoController.criarContato);
-router.put('/contato/:id', contatoController.editContato);
-router.delete('/contato/:id', contatoController.deletarContato);
+router.post('/contato', contatoController.createContato);
+router.put('/contato/:id', contatoController.findByIdAndUpdate);
+router.delete('/contato/:id', contatoController.findByIdAndDelete);
 
 // Rotas de autenticação
 router.post('/auth/login', authController.login);
