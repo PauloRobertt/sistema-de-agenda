@@ -14,13 +14,30 @@
             </div>
             <div class="container-input">
                 <label>E-mail</label>
-                <input class='input' type="email" name="email" placeholder="Digite seu e-mail">
+                <input class='input' type="email" name="email" placeholder="exemple@email.com">
             </div>
             <div class="container-input">
                 <label>Telefone</label>
-                <input class='input' type="tel" name="telefone" placeholder="Digite seu telefone">
+                <input class='input' id="telefone" maxlength="14" type="tel" name="telefone" placeholder="(xx) xxxxx-xxxx">
             </div>
             <button class="button-submit">Criar Contato</button>
         </form>
     </section>
+    <script>
+        const input = document.getElementById("telefone");
+
+        input.addEventListener("input", function () {
+        let value = input.value.replace(/\D/g, "");
+
+        if (value.length > 0 && value.length <= 2) {
+            value = value.replace(/(\d{0})(\d+)/, "($1$2");
+        } else if (value.length > 2 && value.length <= 7) {
+            value = value.replace(/(\d{0})(\d{2})(\d+)/, "($1$2)$3");
+        } else if (value.length > 7) {
+            value = value.replace(/(\d{0})(\d{2})(\d{5})(\d+)/, "($1$2)$3-$4");
+        }
+
+        input.value = value;
+        });
+    </script>
     <%-include('includes/footer.ejs')%>
