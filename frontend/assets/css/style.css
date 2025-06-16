@@ -20,27 +20,25 @@ body {
     height: 100vh;
 }
 
-header,
-footer {
-    width: 100%;
-    background-color: var(--primaryColor);
-    padding: 1em;
-    color: #ffff;
-}
+/* Header Style */
 
-header {
+.container-header {
+    background-color: var(--primaryColor);
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-align: left;
-}
-
-header a {
-    text-decoration: none;
+    padding: 1em;
 }
 
 .titulo-header a {
     color: #ffff;
+}
+
+.opcoes-header {
+    display: flex;
+    gap: 1em;
+    list-style: none;
 }
 
 .button-header {
@@ -49,17 +47,28 @@ header a {
     border: none;
 }
 
-.nav-header {
-    display: flex;
-    gap: 1em;
-    list-style: none;
+.titulo-header a,
+.button-header {
+    text-decoration: none;
 }
 
-footer {
+/* Footer Style */
+
+.container-footer {
+    background-color: var(--primaryColor);
+    color: #ffff;
+    width: 100%;
+    padding: 1em;
     text-align: center;
 }
 
-.container {
+.texto_destacado {}
+
+/* Home Style */
+
+.container-home,
+.container-cadastrarContato,
+.container-autenticacao {
     margin: 1em 0;
     width: 100%;
     height: 100%;
@@ -70,33 +79,34 @@ footer {
     gap: 1em;
 }
 
-.container h1 {
+.container-home h1,
+.container-cadastrarContato h1,
+.container-autenticacao h1 {
     font-size: var(--sizeTittle);
 }
 
-.container table {
+.container-home table {
     width: 80%;
+    border-collapse: collapse;
 }
 
-.container table tr {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1em;
-    padding: .5em 0;
+.container-home table td {
+    padding: .5em;
+}
+
+.container-home table tbody tr {
     border-top: 1px solid var(--primaryColor);
 }
 
-.container table td {
-    padding: 5px;
-    min-width: 20%;
+.container-home table td:nth-child(4),
+.container-home table td:nth-child(5),
+.container-home table td:nth-child(6) {
+    text-align: center;
 }
 
-.container table td:nth-child(4),
-.container table td:nth-child(5),
-.container table td:nth-child(6) {
-    min-width: auto;
+.td-opcoes {
+    display: flex;
+    gap: 1em;
 }
 
 .button-editar,
@@ -121,10 +131,12 @@ footer {
     color: #d63d7b;
 }
 
-.container table,
+.container-home table,
 .button-excluir {
     font-size: 20px;
 }
+
+/* Contato Index Style */
 
 .form-contato {
     width: 50%;
@@ -156,7 +168,15 @@ footer {
     cursor: pointer;
 }
 
+/* AuthView Style */
+
 .container-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.container-forms {
     display: flex;
     gap: 2em;
 }
@@ -181,14 +201,9 @@ footer {
     width: fit-content;
 }
 
-.container-auth {
-    display: flex;
-    flex-direction: column;
-    gap: .5em;
-}
+/* messages Style */
 
 .container-message {
-    height: auto;
     padding: .5em;
     border-radius: .5em;
 }
