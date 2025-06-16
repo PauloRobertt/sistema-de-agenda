@@ -9,15 +9,15 @@
 </head>
 
 <body>
-    <header>
+    <header class="container-header">
         <h1 class="titulo-header">
             <a href="/">Agenda</a>
         </h1>
-        <ul class="nav-header">
+        <ul class="opcoes-header">
             <% if(!user){ %>
                 <li><a href="/auth/index" class="button-header">Entrar</a></li>
             <% } else {%>
-                    <li><a href="/contato/index" class="button-header">Adicionar Contato</a></li>
+                    <li><a href="/contato/index" class="button-header">Cadastrar Contato</a></li>
                     <li><a href="/auth/logout" class="button-header">Sair</a></li>
             <% } %>
         </ul>

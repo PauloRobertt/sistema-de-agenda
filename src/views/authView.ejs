@@ -1,12 +1,12 @@
 <%-include('includes/header.ejs')%>
-    <div class="container">
+    <div class="container-autenticacao">
         <h1>Criar Conta / Entrar</h1>
         <p>Abaixo você pode criar sua conta ou entrar.</p>
-        <div class="container-auth">
+        <div class="container-conteudo">
             <%-include('includes/messages.ejs')%>
-                <div class="container-conteudo">
+                <div class="container-forms">
                     <section class="section-register">
-                        <h2>Criar conta</h2>
+                        <h2>Registrar conta</h2>
                         <p>Se ainda não tem conta, use o formulário abaixo para criar</p>
                         <form action="/auth/register" method="POST" class="form-register">
                             <input type="hidden" name="_csrf" value=<%=csrfToken %>>
@@ -22,7 +22,7 @@
                         </form>
                     </section>
                     <section class="section-login">
-                        <h2>Login</h2>
+                        <h2>Realizar Login</h2>
                         <p>Se já possui uma conta, faça login abaixo.</p>
                         <form action="/auth/login" method="POST" class="form-login">
                             <input type="hidden" name="_csrf" value=<%=csrfToken %>>

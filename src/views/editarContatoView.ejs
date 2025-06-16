@@ -6,19 +6,19 @@
                 <input type="hidden" name="_csrf" value=<%=csrfToken %>>
                 <div class="container-input">
                     <label>Nome</label>
-                    <input class='input' type="text" name="nome" value=<%=editContato.nome%> placeholder="Digite seu nome" >
+                    <input class='input' type="text" name="nome" value="<%=editContato.nome%>" placeholder="Digite seu nome" >
                 </div>
                 <div class="container-input">
                     <label>Sobrenome</label>
-                    <input class='input' type="text" name="sobrenome" value=<%=editContato.sobrenome%>  placeholder="Digite seu sobrenome">
+                    <input class='input' type="text" name="sobrenome" value="<%=editContato.sobrenome%>"  placeholder="Digite seu sobrenome">
                 </div>
                 <div class="container-input">
                     <label>E-mail</label>
-                    <input class='input' type="email" name="email" value=<%=editContato.email%>  placeholder="exemple@email.com">
+                    <input class='input' type="email" name="email" value="<%=editContato.email%> " placeholder="exemple@email.com">
                 </div>
                 <div class="container-input">
                     <label>Telefone</label>
-                    <input class='input' id="telefone" maxlength="14" type="tel" name="telefone" value=<%=editContato.telefone%> placeholder="(xx) xxxxx-xxxx">
+                    <input class='input' id="telefone" maxlength="14" type="tel" name="telefone" value="<%=editContato.telefone%>" placeholder="(xx) xxxxx-xxxx">
                 </div>
                 <button type="submit" class="button-submit">Editar Contato</button>
             </form>     
