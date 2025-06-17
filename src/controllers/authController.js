@@ -25,7 +25,7 @@ exports.login = async (req, res) => {
 
         req.session.save(() => {
             req.flash('sucesso', 'Usuario logado com sucesso!');
-            res.redirect('/auth/index');
+            res.redirect('/');
         })
 
     } catch (error) {
