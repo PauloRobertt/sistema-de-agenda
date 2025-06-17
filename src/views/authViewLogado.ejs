@@ -1,8 +1,8 @@
 <%-include('includes/header.ejs')%>
-    <div class="container">
-        <div class="container-auth">
-            <h1><%=user.email%> esta logado no sistema!</h1>
-            <%-include('includes/messages.ejs')%>
-        </div>
+    <div class="container-authLogado">
+        <h1>
+            <strong  style="color: #007bff"><%=user.email%></strong> já esta logado no sistema!
+        </h1>
+        <%-include('includes/messages.ejs')%>
     </div>
 <%-include('includes/footer.ejs')%>
