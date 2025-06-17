@@ -1,20 +1,20 @@
     <%-include('includes/header.ejs')%>
-    <section class="container">
+    <section class="container-cadastrarContato">
         <h1>Cadastrar contato</h1>
         <form action="/contato" method="post" class="form-contato">
             <%-include('includes/messages.ejs')%>
             <input type="hidden" name="_csrf" value=<%=csrfToken %>>
             <div class="container-input">
                 <label>Nome</label>
-                <input class='input' type="text" name="nome" placeholder="Digite seu nome" >
+                <input class='input' type="text" maxlength="50" name="nome" placeholder="Digite o nome do contato" >
             </div>
             <div class="container-input">
                 <label>Sobrenome</label>
-                <input class='input' type="text" name="sobrenome" placeholder="Digite seu sobrenome">
+                <input class='input' type="text" maxlength="50" name="sobrenome" placeholder="Digite o sobrenome do contato">
             </div>
             <div class="container-input">
                 <label>E-mail</label>
-                <input class='input' type="email" name="email" placeholder="exemple@email.com">
+                <input class='input' type="email" maxlength="50" name="email" placeholder="exemple@email.com">
             </div>
             <div class="container-input">
                 <label>Telefone</label>

@@ -1,6 +1,6 @@
     <%-include('includes/header.ejs')%>
-    <section class="container">
-        <h1>Agenda</h1>
+    <section class="container-home">
+        <h1>Contatos</h1>
         <h3>Abaixo estão todos os seus contatos.</h3>
         <% if(!user){ %>
             <p>Você precisa estar logado ou criar um registro para ver seus contatos.</p>
@@ -10,21 +10,34 @@
                 <% if(contatos.length === 0) { %>
                     <h3>Nenhum contato encontrado!</h3>
                 <% } else { %>
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Sobrenome</td>
+                            <td>E-mail</td>
+                            <td>Telefone</td>
+                            <td>Opções</td>
+                        </tr>
+                    </thead>
                     <%contatos.forEach((contato)=>{%>
-                    <tr>
-                        <td><%=contato.nome%></td>
-                        <td><%=contato.sobrenome%></td>
-                        <td><%=contato.email%></td>
-                        <td><%=contato.telefone%></td>
-                        <td><a href="/contato/edit/<%= contato._id %>" class="button-editar" >Editar</a></td>
-                        <td>
-                            <form action="/contato/<%= contato._id %>?_method=DELETE" method="POST">
-                                <input type="hidden" name="_csrf" value=<%=csrfToken %>>
-                                <button class="button-excluir"><a>Excluir</a></button>
-                            </form>
-                        </td>
-                    </tr>
-                <% }) %>
+                        <tbody>
+                            <tr>
+                                <td><%=contato.nome%></td>
+                                <td><%=contato.sobrenome%></td>
+                                <td><%=contato.email%></td>
+                                <td><%=contato.telefone%></td>
+                                <td>
+                                    <div class="td-opcoes">
+                                        <a href="/contato/edit/<%= contato._id %>" class="button-editar" >Editar</a> 
+                                        <form action="/contato/<%= contato._id %>?_method=DELETE" method="POST">
+                                            <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+                                            <button class="button-excluir"><a>Excluir</a></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    <% }) %>
                 <% } %>
             </table>
         <% } %>

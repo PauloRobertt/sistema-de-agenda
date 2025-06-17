@@ -4,15 +4,18 @@ const contatoSchema = mongoose.Schema({
     nome: {
         type: String,
         required: true,
+        maxlength: 50
     },
     sobrenome: {
         type: String,
         required: true,
+        maxlength: 50
     },
     email: {
         type: String,
         required: true,
         lowercase: true,
+        maxlength: 50
     },
     telefone: {
         type: String,
